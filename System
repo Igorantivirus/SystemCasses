@@ -1,0 +1,7 @@
+#ifndef _SYSTEM_HPP_
+#define _SYSTEM_HPP_
+
+#include"SystemHPP\System.hpp"
+#include"SystemHPP\System.cpp"
+
+#endif
