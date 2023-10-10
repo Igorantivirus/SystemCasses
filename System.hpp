@@ -62,7 +62,7 @@ namespace Sys
 		template<typename First, typename ... Types>
 		static void Write(First arg, Types ... args)
 		{
-			std::cout << arg;
+			Write(arg);
 			Write(args...);
 		}
 
