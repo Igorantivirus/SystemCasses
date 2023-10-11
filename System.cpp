@@ -1,6 +1,6 @@
 #include "System.hpp"
 
-#include <cstdlib>
+#define esc '\x1b'
 
 namespace Sys
 {
@@ -40,20 +40,20 @@ namespace Sys
 
 	void Console::SetBackgroundColor(Color color)
 	{
-		std::cout << "\x1b[" << (color + 40) << "m";
+		std::cout << esc << '[' << (int(color) + 40) << "m";
 		backgroundColor = color;
 	}
 	void Console::SetColor(Color color)
 	{
-		std::cout << "\x1b[" << (color + 30) << "m";
+		std::cout << esc << '[' << (int(color) + 30) << "m";
 		textColor = color;
 	}
 	void Console::SetStyle(Style style)
 	{
-		std::cout << "\x1b[" << style << "m";
+		std::cout << esc << '[' << int(style) << "m";
 	}
 	void Console::InverseColor()
-	{//std::cout << "\x1b[7m";
+	{
 		Color pr = textColor;
 		textColor = backgroundColor;
 		backgroundColor = pr;
@@ -62,7 +62,7 @@ namespace Sys
 	}
 	void Console::ResetColors()
 	{
-		std::cout << "\x1b[0m";
+		std::cout << esc << "[0m";
 		textColor = Color::White;
 		backgroundColor = Color::Black;
 	}
@@ -77,36 +77,36 @@ namespace Sys
 
 	void Console::SetCursorPosition(unsigned int x, unsigned int y)
 	{
-		std::cout << "\x1b[" << y << ";" << x << "H";
+		std::cout << esc << '[' << y << ";" << x << "H";
 	}
 
 	void Console::Clear()
 	{
-		std::cout << "\x1b[2J\x1b[H";
+		std::cout << esc << "[2J" << esc << "[H";
 	}
 	void Console::ClearNextString()
 	{
-		std::cout << "\x1b[K";
+		std::cout << esc << "[K";
 	}
 	void Console::ClearUpChar(unsigned count)
 	{
 		for (unsigned i = 0; i < count; i++)
-			std::cout << "\x1b[A";
+			std::cout << esc << "[A";
 	}
 	void Console::ClearDownChar(unsigned count)
 	{
 		for (unsigned i = 0; i < count; i++)
-			std::cout << "\x1b[B";
+			std::cout << esc << "[B";
 	}
 	void Console::ClearRightChar(unsigned count)
 	{
 		for (unsigned i = 0; i < count; i++)
-			std::cout << "\x1b[C";
+			std::cout << esc << "[C";
 	}
 	void Console::ClearLeftChar(unsigned count)
 	{
 		for (unsigned i = 0; i < count; i++)
-			std::cout << "\x1b[D";
+			std::cout << esc << "[D";
 	}
 
 	void Console::Pause()
@@ -116,11 +116,11 @@ namespace Sys
 
 	void Console::CursorHide()
 	{
-		std::cout << "\x1b[?25l";
+		std::cout << esc << "[?25l";
 	}
 	void Console::CursorShow()
 	{
-		std::cout << "\x1b[?25h";
+		std::cout << esc << "[?25h";
 	}
 	bool Console::CursorVisible()
 	{
@@ -129,7 +129,7 @@ namespace Sys
 
 	void Console::ToBeginGorizontLine()
 	{
-		std::cout << "\x1b[G";
+		std::cout << esc << "[G";
 	}
 
 	std::string Console::RusEdit(std::string txt)

@@ -6,7 +6,7 @@
 
 namespace Sys
 {
-	enum OS : unsigned short
+	enum class OS : unsigned short
 	{
 		Unknown,
 		Linux,
@@ -14,7 +14,7 @@ namespace Sys
 		Windows,
 		Android
 	};
-	enum Color : unsigned short
+	enum class Color : unsigned short
 	{
 		Black = 0,
 		Red,
@@ -26,7 +26,7 @@ namespace Sys
 		White,
 		Default = 9
 	};
-	enum Style : unsigned short
+	enum class Style : unsigned short
 	{
 		Defualt = 0,
 		Bold = 1,
