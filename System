@@ -1,7 +1,6 @@
-#ifndef _SYSTEM_HPP_
-#define _SYSTEM_HPP_
+#pragma once
 
-#include"SystemHPP\System.hpp"
-#include"SystemHPP\System.cpp"
-
-#endif
+#include"SystemHPP\Console.hpp"
+#include"SystemHPP\Convert.hpp"
+#include"SystemHPP\Console.cpp"
+#include"SystemHPP\Convert.cpp"
