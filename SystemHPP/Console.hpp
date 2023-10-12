@@ -51,6 +51,9 @@ namespace Sys
 	class Console {
 	public:
 		#pragma region Write Read
+		static void Write(float arg);
+		static void Write(double arg);
+		static void Write(long double arg);
 		static void Write(wchar_t arg);
 		static void Write(const wchar_t* arg);
 		static void Write(const std::wstring& arg);

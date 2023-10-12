@@ -4,7 +4,6 @@
 #include <codecvt>
 #include <limits>
 #include <cmath>
-#include <exception>
 
 std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converterW;
 std::wstring_convert<std::codecvt_utf8<char16_t>, char16_t> converterU16;
@@ -58,10 +57,13 @@ namespace Sys
 		float pr; 
 		long long pri;
 		pri = static_cast<long long>(abs(modf(val, &pr) * pow(10, std::numeric_limits<float>::digits10)));
-		if (pr != 0)
+		if (pri != 0)
+		{
 			res += '.' + std::to_string(pri);
-		for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
-		return res.erase(pri+1);
+			for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
+			return res.erase(pri+1);
+		}
+		return res;
 	}
 	std::string Convert::ToString(double val)
 	{
@@ -70,10 +72,13 @@ namespace Sys
 		double pr;
 		long long pri;
 		pri = static_cast<long long>(abs(modf(val, &pr) * pow(10, std::numeric_limits<double>::digits10)));
-		if (pr != 0)
+		if (pri != 0)
+		{
 			res += '.' + std::to_string(pri);
-		for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
-		return res.erase(pri + 1);
+			for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
+			return res.erase(pri + 1);
+		}
+		return res;
 	}
 	std::string Convert::ToString(long double val)
 	{
@@ -82,10 +87,13 @@ namespace Sys
 		long double pr;
 		long long pri;
 		pri = static_cast<long long>(abs(modf(val, &pr) * pow(10, std::numeric_limits<long double>::digits10)));
-		if (pr != 0)
+		if (pri != 0)
+		{
 			res += '.' + std::to_string(pri);
-		for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
-		return res.erase(pri + 1);
+			for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
+			return res.erase(pri + 1);
+		}
+		return res;
 	}
 
 	std::string Convert::ToString(char val)
@@ -169,10 +177,13 @@ namespace Sys
 		float pr;
 		long long pri;
 		pri = static_cast<long long>(abs(modf(val, &pr) * pow(10, std::numeric_limits<float>::digits10)));
-		if (pr != 0)
+		if (pri != 0)
+		{
 			res += L'.' + std::to_wstring(pri);
-		for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
-		return res.erase(pri + 1);
+			for (pri = res.size() - 1; res[pri] == L'0'; pri--) {}
+			return res.erase(pri + 1);
+		}
+		return res;
 	}
 	std::wstring Convert::ToWString(double val)
 	{
@@ -181,10 +192,13 @@ namespace Sys
 		double pr;
 		long long pri;
 		pri = static_cast<long long>(abs(modf(val, &pr) * pow(10, std::numeric_limits<double>::digits10)));
-		if (pr != 0)
+		if (pri != 0)
+		{
 			res += L'.' + std::to_wstring(pri);
-		for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
-		return res.erase(pri + 1);
+			for (pri = res.size() - 1; res[pri] == L'0'; pri--) {}
+			return res.erase(pri + 1);
+		}
+		return res;
 	}
 	std::wstring Convert::ToWString(long double val)
 	{
@@ -193,10 +207,13 @@ namespace Sys
 		long double pr;
 		long long pri;
 		pri = static_cast<long long>(abs(modf(val, &pr) * pow(10, std::numeric_limits<long double>::digits10)));
-		if (pr != 0)
+		if (pri != 0)
+		{
 			res += L'.' + std::to_wstring(pri);
-		for (pri = res.size() - 1; res[pri] == '0'; pri--) {}
-		return res.erase(pri + 1);
+			for (pri = res.size() - 1; res[pri] == L'0'; pri--) {}
+			return res.erase(pri + 1);
+		}
+		return res;
 	}
 
 	std::wstring Convert::ToWString(char val)
@@ -443,7 +460,7 @@ namespace Sys
 		{
 			res = std::stoull(val);
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -456,7 +473,7 @@ namespace Sys
 		{
 			res = std::stoull(val);
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -469,7 +486,7 @@ namespace Sys
 		{
 			res = std::stoull(ToString(val));
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -482,7 +499,7 @@ namespace Sys
 		{
 			res = std::stoull(ToString(val));
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -500,7 +517,7 @@ namespace Sys
 		{
 			res = std::stoll(val);
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -513,7 +530,7 @@ namespace Sys
 		{
 			res = std::stoll(val);
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -526,7 +543,7 @@ namespace Sys
 		{
 			res = std::stoll(ToString(val));
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -539,7 +556,7 @@ namespace Sys
 		{
 			res = std::stoll(ToString(val));
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -557,7 +574,7 @@ namespace Sys
 		{
 			res = std::stold(val);
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -570,7 +587,7 @@ namespace Sys
 		{
 			res = std::stold(val);
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -583,7 +600,7 @@ namespace Sys
 		{
 			res = std::stold(ToString(val));
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}
@@ -596,7 +613,7 @@ namespace Sys
 		{
 			res = std::stold(ToString(val));
 		}
-		catch (const std::exception& e)
+		catch (...)
 		{
 			res = 0;
 		}

@@ -27,6 +27,18 @@ namespace Sys
 		return _getch();
 	}
 
+	void Console::Write(float arg)
+	{
+		std::cout << Convert::ToString(arg);
+	}
+	void Console::Write(double arg)
+	{
+		std::cout << Convert::ToString(arg);
+	}
+	void Console::Write(long double arg)
+	{
+		std::cout << Convert::ToString(arg);
+	}
 	void Console::Write(wchar_t arg)
 	{
 		std::wcout << arg;
@@ -187,11 +199,19 @@ namespace Sys
 			c = -15;
 		return c;
 	}
-
+#if defined(_WIN32) || defined(_WIN64)
 	void Console::SetEncoding(unsigned code)
 	{
 		std::string res = "chcp " + std::to_string(code) + " > nul";
 		system(res.c_str());
 	}
+#else
+	void Console::SetEncoding(unsigned code)
+	{
+		std::string res = "setterm -encoding CP" + std::to_string(code) + " > /dev/null";
+		system(res.c_str());
+	}
+#endif
+	
 	#pragma endregion
 }
